@@ -1,5 +1,5 @@
 package org.example;
-
+import java.sql.Connection;
 import org.example.IConnection;
 
 public class MyPostgreConnection implements IConnection {

@@ -6,9 +6,7 @@ public class PostgreSQLJDBC {
         Connection c = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/dance_studio_",
-                            "postgres", "1234");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dance_studio_", "postgres", "1234");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());

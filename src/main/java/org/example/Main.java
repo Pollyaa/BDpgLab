@@ -8,13 +8,15 @@ public class Main {
         System.out.println("==== Welcome to MyRDBMS ====");
 
         // TODO: get the connection params from the user input
+        //  1. Choose the Datasource - PostgreSQL / SQLite
+        //  2. Enter needed connection params (url, user, pass)
 
         IConnection connection = MyPostgreConnection.openConnection(
                 "jdbc:postgresql://localhost:5432/dance_studio_",
                 "postgres",
                 "1234");
 
-        // TODO: implement MySQLiteConnection in the same way
+        IConnection connSQlite = MySQLiteConnection.openConnection("jdbc:sqlite:test.db");
 
         // TODO [OPTIONAL] - implement MyCSVConnection
 

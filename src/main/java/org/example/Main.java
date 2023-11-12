@@ -7,12 +7,16 @@ public class Main {
 
         System.out.println("==== Welcome to MyRDBMS ====");
 
-        PostgreSQLJDBC connection = new PostgreSQLJDBC(
+        // TODO: get the connection params from the user input
+
+        IConnection connection = MyPostgreConnection.openConnection(
                 "jdbc:postgresql://localhost:5432/dance_studio_",
                 "postgres",
                 "1234");
 
-        connection.openConnection();
+        // TODO: implement MySQLiteConnection in the same way
+
+        // TODO [OPTIONAL] - implement MyCSVConnection
 
         System.out.println("==== THE END ====");
     }

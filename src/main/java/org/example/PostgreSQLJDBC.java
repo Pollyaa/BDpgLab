@@ -2,16 +2,26 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 public class PostgreSQLJDBC {
-    public static void main(String[] args) {
-        Connection c = null;
+
+    Connection connection = null;
+
+    final String url;
+    final String user;
+    final String pass;
+
+    public PostgreSQLJDBC(String url, String user, String pass) {
+        this.url = url;
+        this.user = user;
+        this.pass = pass;
+    }
+    public void openConnection() {
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/dance_studio_", "postgres", "1234");
+            connection = DriverManager.getConnection(url, user, pass);
+
+            System.out.println("Opened database successfully");
         } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getClass().getName()+": "+e.getMessage());
-            System.exit(0);
+            System.out.println("Error: " + e.getClass().getName()+": " + e.getMessage());
         }
-        System.out.println("Opened database successfully");
     }
 }

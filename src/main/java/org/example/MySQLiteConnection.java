@@ -6,13 +6,18 @@ import java.sql.SQLException;
 
 public class MySQLiteConnection implements IConnection {
     private Connection sqliteConn = null;
+    private String url;
 
-    private MySQLiteConnection(Connection sqliteConnection) {
-        sqliteConn = sqliteConnection;
+    private MySQLiteConnection(String url) {
+        this.url = url;
     }
 
     public static IConnection createConnection(String url) {
-        Connection sqliteConn = null;
+        return new MySQLiteConnection(url);
+    }
+
+    @Override
+    public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             sqliteConn = DriverManager.getConnection(url);
@@ -20,11 +25,6 @@ public class MySQLiteConnection implements IConnection {
         } catch (Exception e) {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
         }
-        return new MySQLiteConnection(sqliteConn);
-    }
-
-    @Override
-    public void connect() {
     }
     @Override
     public void getTables() {

@@ -6,13 +6,22 @@ import java.sql.SQLException;
 
 public class MyPostgreConnection implements IConnection {
     private Connection pgConn = null;
+    private String url;
+    private String user;
+    private String pass;
 
-    private MyPostgreConnection(Connection pgConnection) {
-        pgConn = pgConnection;
+    private MyPostgreConnection(String url, String user, String pass) {
+        this.url = url;
+        this.user = user;
+        this.pass = pass;
     }
 
     public static IConnection createConnection(String url, String user, String pass) {
-        Connection pgConn = null;
+        return new MyPostgreConnection(url, user, pass);
+    }
+
+    @Override
+    public void connect() {
         try {
             Class.forName("org.postgresql.Driver");
             pgConn = DriverManager.getConnection(url, user, pass);
@@ -20,11 +29,6 @@ public class MyPostgreConnection implements IConnection {
         } catch (Exception e) {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
         }
-        return new MyPostgreConnection(pgConn);
-    }
-
-    @Override
-    public void connect() {
     }
     @Override
     public void getTables() {

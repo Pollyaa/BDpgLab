@@ -1,4 +1,5 @@
 package org.example;
+import java.sql.Connection;
 
 public interface IConnection {
     void connect();
@@ -7,4 +8,5 @@ public interface IConnection {
     void getTableInfo(String tableName);
     void execute(String query);
 }
+
 

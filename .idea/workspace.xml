@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94397f03-f6c9-4d3e-97fb-d083aeea9572" name="Changes" comment="CursorUpdate">
+    <list default="true" id="94397f03-f6c9-4d3e-97fb-d083aeea9572" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/IConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/IConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteConnection.java" afterDir="false" />
@@ -93,13 +94,22 @@
       <option name="project" value="LOCAL" />
       <updated>1700736459141</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update">
+      <option name="closed" value="true" />
+      <created>1700741978327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700741978327</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New version" />
     <MESSAGE value="CursorUpdate" />
-    <option name="LAST_COMMIT_MESSAGE" value="CursorUpdate" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

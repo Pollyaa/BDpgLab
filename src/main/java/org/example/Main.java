@@ -2,6 +2,7 @@ package org.example;
 
 import java.sql.Connection;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("==== Welcome to MyRDBMS ====");
@@ -10,8 +11,10 @@ public class Main {
                 "jdbc:postgresql://localhost:5432/dance_studio_",
                 "postgres",
                 "1234");
+        connection.connect();
 
-        IConnection connSQlite = MySQLiteConnection.createConnection("jdbc:sqlite:DataBase.db");
+        IConnection connSQLite = MySQLiteConnection.createConnection("jdbc:sqlite:DataBase.db");
+        connSQLite.connect();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -56,3 +59,4 @@ public class Main {
         System.out.println("==== THE END ====");
     }
 }
+

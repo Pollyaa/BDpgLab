@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("==== Welcome to MyRDBMS ====");
 
-        IConnection connection = MyPostgreConnection.openConnection(
+        IConnection connection = MyPostgreConnection.createConnection(
                 "jdbc:postgresql://localhost:5432/dance_studio_",
                 "postgres",
                 "1234");
 
-        IConnection connSQlite = MySQLiteConnection.openConnection("jdbc:sqlite:DataBase.db");
+        IConnection connSQlite = MySQLiteConnection.createConnection("jdbc:sqlite:DataBase.db");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -31,7 +31,8 @@ public class Main {
                 System.out.print("Password: ");
                 String pgPassword = scanner.next();
 
-                connection = MyPostgreConnection.openConnection(pgUrl, pgUser, pgPassword);
+                connection = MyPostgreConnection.createConnection(pgUrl, pgUser, pgPassword);
+                connection.connect();
                 break;
 
             case 2:
@@ -39,7 +40,8 @@ public class Main {
                 System.out.print("URL: ");
                 String sqliteUrl = scanner.next();
 
-                connection = MySQLiteConnection.openConnection(sqliteUrl);
+                connection = MySQLiteConnection.createConnection(sqliteUrl);
+                connection.connect();
                 break;
 
             default:

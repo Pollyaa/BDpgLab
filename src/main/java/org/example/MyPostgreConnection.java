@@ -7,7 +7,7 @@ public class MyPostgreConnection implements IConnection {
     private MyPostgreConnection (Connection pgConnection) {
         pgConn = pgConnection;
     }
-    public static IConnection openConnection(String url, String user, String pass)  {
+    public static IConnection createConnection(String url, String user, String pass)  {
 
         Connection pgConn = null;
         try {

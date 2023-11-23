@@ -10,7 +10,7 @@ public class MySQLiteConnection implements IConnection {
         pgConn = pgConnection;
     }
 
-    public static IConnection openConnection(String url)  {
+    public static IConnection createConnection(String url)  {
 
         Connection sqliteConn = null;
         try {

@@ -24,4 +24,19 @@ public class MySQLiteConnection implements IConnection {
 
         return new MySQLiteConnection(sqliteConn);
     }
+    public void connect() {
+    }
+    @Override
+    public void getTables() {
+    }
+
+    @Override
+    public void getTable(String tableName) {
+    }
+    @Override
+    public void getTableInfo(String tableName) {
+    }
+    @Override
+    public void execute(String query) {
+    }
 }

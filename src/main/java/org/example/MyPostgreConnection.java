@@ -21,6 +21,22 @@ public class MyPostgreConnection implements IConnection {
 
         return new MyPostgreConnection(pgConn);
     }
+    @Override
+    public void connect() {
+    }
+    @Override
+    public void getTables() {
+    }
+
+    @Override
+    public void getTable(String tableName) {
+    }
+    @Override
+    public void getTableInfo(String tableName) {
+    }
+    @Override
+    public void execute(String query) {
+    }
 }
 
 

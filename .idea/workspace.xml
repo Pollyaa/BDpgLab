@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94397f03-f6c9-4d3e-97fb-d083aeea9572" name="Changes" comment="Update1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ICursor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ICursor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreCursor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MyPostgreCursor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteCursor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MySQLiteCursor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +109,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700755400926</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update1">
+      <option name="closed" value="true" />
+      <created>1700756338285</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700756338285</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

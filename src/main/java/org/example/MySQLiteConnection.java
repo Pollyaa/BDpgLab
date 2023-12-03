@@ -3,6 +3,8 @@ package org.example;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class MySQLiteConnection implements IConnection {
     private Connection sqliteConn = null;
@@ -38,4 +40,19 @@ public class MySQLiteConnection implements IConnection {
     @Override
     public void execute(String query) {
     }
+    @Override
+    public ICursor getAllTables() {
+        try {
+            if (sqliteConn != null) {
+                Statement stmt = sqliteConn.createStatement();
+                String query = "SELECT name FROM sqlite_master WHERE type='table'";
+                ResultSet rs = stmt.executeQuery(query);
+                return new MySQLiteCursor(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new MySQLiteCursor(null);
+    }
+
 }

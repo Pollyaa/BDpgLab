@@ -56,7 +56,11 @@ public class Main {
             System.out.println("Connected to the database.");
         }
 
+        ICursor tablesCursor = connection.getAllTables();
+        tablesCursor.printCursor(tablesCursor);
+
         System.out.println("==== THE END ====");
     }
+
 }
 

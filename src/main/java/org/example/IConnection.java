@@ -7,6 +7,7 @@ public interface IConnection {
     void getTable(String tableName);
     void getTableInfo(String tableName);
     void execute(String query);
+    ICursor getAllTables();
 }
 
 

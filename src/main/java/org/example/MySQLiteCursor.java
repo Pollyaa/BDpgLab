@@ -93,16 +93,6 @@ public class MySQLiteCursor implements ICursor {
     }
 
     @Override
-    public String getValue(Integer column) {
-        try {
-            return resultSet.getString(column);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
     public String getValue(String column) {
         try {
             return resultSet.getString(column);
@@ -111,4 +101,12 @@ public class MySQLiteCursor implements ICursor {
         }
         return null;
     }
+
+
+    public void removeRecord(Integer row) {
+    }
 }
+
+
+
+

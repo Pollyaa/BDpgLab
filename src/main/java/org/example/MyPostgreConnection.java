@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
 public class MyPostgreConnection implements IConnection {
     private Connection pgConn = null;
     private String url;
@@ -32,18 +33,29 @@ public class MyPostgreConnection implements IConnection {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
         }
     }
+
     @Override
     public void getTables() {
     }
+
     @Override
     public void getTable(String tableName) {
     }
+
     @Override
     public void getTableInfo(String tableName) {
     }
+
     @Override
-    public void execute(String query) {
+    public ResultSet execute(String query) throws SQLException {
+        try {
+            Statement stmt = pgConn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            throw new SQLException("Error executing query: " + e.getMessage());
+        }
     }
+
     @Override
     public ICursor getAllTables() {
         try {
@@ -54,11 +66,55 @@ public class MyPostgreConnection implements IConnection {
                 return new MyPostgreCursor(rs);
             }
         } catch (SQLException e) {
+            // Обробка помилки, але ви не викидаєте її з методу
             System.out.println(e.getMessage());
         }
         return new MyPostgreCursor(null);
     }
 
-}
+    @Override
+    public ICursor getRecordsFromTable(String tableName) {
+        if (pgConn != null) {
+            String query = "SELECT * FROM " + tableName;
+            try {
+                return MyPostgreCursor.createScrollableCursor(pgConn, query);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 
+    @Override
+    public Statement createStatement() {
+        try {
+            return pgConn.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ResultSet executeQuery(String query) {
+        try {
+            Statement stmt = pgConn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void executeUpdate(String query) {
+        try {
+            Statement stmt = pgConn.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("Query executed successfully");
+        } catch (SQLException e) {
+            System.out.println("Error executing query: " + e.getMessage());
+        }
+    }
+}
 

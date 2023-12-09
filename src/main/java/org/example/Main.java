@@ -1,7 +1,7 @@
 package org.example;
 
-import java.sql.Connection;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +24,9 @@ public class Main {
 
         int choice = scanner.nextInt();
 
+        ITable table = null;
+        ICursor tableCursor = null;
+
         switch (choice) {
             case 1:
                 System.out.println("Enter PostgreSQL connection parameters:");
@@ -36,6 +39,13 @@ public class Main {
 
                 connection = MyPostgreConnection.createConnection(pgUrl, pgUser, pgPassword);
                 connection.connect();
+
+
+                tableCursor = connection.getRecordsFromTable("student");
+                tableCursor.printCursor(tableCursor);
+
+
+                table = (MyPostgreTable) tableCursor;
                 break;
 
             case 2:
@@ -45,10 +55,18 @@ public class Main {
 
                 connection = MySQLiteConnection.createConnection(sqliteUrl);
                 connection.connect();
-                break;
 
-            default:
-                System.out.println("Invalid choice");
+                ITable sqliteTable = (ITable) connection.getRecordsFromTable("Person");
+                ICursor sqliteTableCursor = sqliteTable.getAllRecords();
+                sqliteTableCursor.printCursor(sqliteTableCursor);
+
+                ArrayList<String> otherValues = new ArrayList<>();
+                otherValues.add("'value1'");
+                otherValues.add("'value2'");
+                sqliteTable.insertRecord(otherValues);
+
+                sqliteTableCursor = sqliteTable.getAllRecords();
+                sqliteTableCursor.printCursor(sqliteTableCursor);
                 break;
         }
 
@@ -56,11 +74,16 @@ public class Main {
             System.out.println("Connected to the database.");
         }
 
-        ICursor tablesCursor = connection.getAllTables();
-        tablesCursor.printCursor(tablesCursor);
+        if (table != null) {
 
+            ArrayList<String> values = new ArrayList<>();
+            values.add("'test2'");
+            table.insertRecord(values);
+
+            tableCursor = table.getAllRecords();
+            tableCursor.printCursor(tableCursor);
+        }
         System.out.println("==== THE END ====");
     }
-
 }
 

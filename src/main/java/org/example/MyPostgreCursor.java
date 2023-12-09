@@ -1,11 +1,17 @@
 package org.example;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class MyPostgreCursor implements ICursor {
     private ResultSet resultSet;
 
     public MyPostgreCursor(ResultSet resultSet) {
+
         this.resultSet = resultSet;
     }
 
@@ -93,7 +99,7 @@ public class MyPostgreCursor implements ICursor {
     }
 
     @Override
-    public String getValue(Integer column) {
+    public String getValue(String column) {
         try {
             return resultSet.getString(column);
         } catch (SQLException e) {
@@ -102,13 +108,26 @@ public class MyPostgreCursor implements ICursor {
         return null;
     }
 
-    @Override
-    public String getValue(String column) {
+    public void removeRecord(Integer row) {
+
+    }
+
+    public void insertRecord(ArrayList<String> values) {
+
+    }
+
+    protected ICursor getRecords() {
+        return null;
+    }
+
+    public static MyPostgreCursor createScrollableCursor(Connection connection, String query) throws SQLException {
         try {
-            return resultSet.getString(column);
+            PreparedStatement ps = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = ps.executeQuery();
+            return new MyPostgreCursor(rs);
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new SQLException("Error creating scrollable cursor: " + e.getMessage());
         }
-        return null;
     }
 }

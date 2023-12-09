@@ -1,10 +1,6 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class MySQLiteConnection implements IConnection {
     private Connection sqliteConn = null;
@@ -28,6 +24,18 @@ public class MySQLiteConnection implements IConnection {
             System.out.println("Error: " + e.getClass().getName() + ": " + e.getMessage());
         }
     }
+
+    @Override
+    public Statement createStatement() {
+        try {
+            if (sqliteConn != null) {
+                return sqliteConn.createStatement();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public void getTables() {
     }
@@ -38,7 +46,9 @@ public class MySQLiteConnection implements IConnection {
     public void getTableInfo(String tableName) {
     }
     @Override
-    public void execute(String query) {
+    public ResultSet execute(String query) throws SQLException {
+        Statement statement = sqliteConn.createStatement();
+        return statement.executeQuery(query);
     }
     @Override
     public ICursor getAllTables() {
@@ -54,5 +64,40 @@ public class MySQLiteConnection implements IConnection {
         }
         return new MySQLiteCursor(null);
     }
-
+    @Override
+    public void executeUpdate(String query) {
+        try {
+            Statement stmt = sqliteConn.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("Query executed successfully");
+        } catch (SQLException e) {
+            System.out.println("Error executing query: " + e.getMessage());
+        }
+    }
+    @Override
+    public ResultSet executeQuery(String query) {
+        try {
+            Statement stmt = sqliteConn.createStatement();
+            return stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    @Override
+    public ICursor getRecordsFromTable(String tableName) {
+        try {
+            if (sqliteConn != null) {
+                Statement stmt = sqliteConn.createStatement();
+                String query = "SELECT * FROM " + tableName;
+                ResultSet rs = stmt.executeQuery(query);
+                return new MySQLiteCursor(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
+
+
